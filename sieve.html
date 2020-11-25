@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<style>
+    .cell {
+        font: bold 28px monospace;
+        text-align: center;
+        border: 1;
+        height: 100px;
+        width: 100px;
+        background: green;
+    }
+
+    /* .background {} */
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <title>Sieve of Eratosthenes</title>
+</head>
+
+<body>
+    <script>
+        function myFunction(x) {
+            if (x.style.backgroundColor === 'red') {
+                x.style.backgroundColor = 'green';
+            } else {
+                x.style.backgroundColor = 'red';
+            }
+        }
+    </script>
+    <div>
+        <table>
+            <tr>
+                <td class="cell" id="cell1" onclick="myFunction(this);">1</td>
+                <td class="cell" id="cell2" onclick="myFunction(this);">2</td>
+                <td class="cell" id="cell3" onclick="myFunction(this);">3</td>
+                <td class="cell" id="cell4" onclick="myFunction(this);">4</td>
+                <td class="cell" id="cell5" onclick="myFunction(this);">5</td>
+                <td class="cell" id="cell6" onclick="myFunction(this);">6</td>
+                <td class="cell" id="cell7" onclick="myFunction(this);">7</td>
+                <td class="cell" id="cell8" onclick="myFunction(this);">8</td>
+                <td class="cell" id="cell9" onclick="myFunction(this);">9</td>
+                <td class="cell" id="cell10" onclick="myFunction(this);">10</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell11" onclick="myFunction(this);">11</td>
+                <td class="cell" id="cell12" onclick="myFunction(this);">12</td>
+                <td class="cell" id="cell13" onclick="myFunction(this);">13</td>
+                <td class="cell" id="cell14" onclick="myFunction(this);">14</td>
+                <td class="cell" id="cell15" onclick="myFunction(this);">15</td>
+                <td class="cell" id="cell16" onclick="myFunction(this);">16</td>
+                <td class="cell" id="cell17" onclick="myFunction(this);">17</td>
+                <td class="cell" id="cell18" onclick="myFunction(this);">18</td>
+                <td class="cell" id="cell19" onclick="myFunction(this);">19</td>
+                <td class="cell" id="cell20" onclick="myFunction(this);">20</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell21" onclick="myFunction(this);">21</td>
+                <td class="cell" id="cell22" onclick="myFunction(this);">22</td>
+                <td class="cell" id="cell23" onclick="myFunction(this);">23</td>
+                <td class="cell" id="cell24" onclick="myFunction(this);">24</td>
+                <td class="cell" id="cell25" onclick="myFunction(this);">25</td>
+                <td class="cell" id="cell26" onclick="myFunction(this);">26</td>
+                <td class="cell" id="cell27" onclick="myFunction(this);">27</td>
+                <td class="cell" id="cell28" onclick="myFunction(this);">28</td>
+                <td class="cell" id="cell29" onclick="myFunction(this);">29</td>
+                <td class="cell" id="cell30" onclick="myFunction(this);">30</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell31" onclick="myFunction(this);">31</td>
+                <td class="cell" id="cell32" onclick="myFunction(this);">32</td>
+                <td class="cell" id="cell33" onclick="myFunction(this);">33</td>
+                <td class="cell" id="cell34" onclick="myFunction(this);">34</td>
+                <td class="cell" id="cell35" onclick="myFunction(this);">35</td>
+                <td class="cell" id="cell36" onclick="myFunction(this);">36</td>
+                <td class="cell" id="cell37" onclick="myFunction(this);">37</td>
+                <td class="cell" id="cell38" onclick="myFunction(this);">38</td>
+                <td class="cell" id="cell39" onclick="myFunction(this);">39</td>
+                <td class="cell" id="cell40" onclick="myFunction(this);">40</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell41" onclick="myFunction(this);">41</td>
+                <td class="cell" id="cell42" onclick="myFunction(this);">42</td>
+                <td class="cell" id="cell43" onclick="myFunction(this);">43</td>
+                <td class="cell" id="cell44" onclick="myFunction(this);">44</td>
+                <td class="cell" id="cell45" onclick="myFunction(this);">45</td>
+                <td class="cell" id="cell46" onclick="myFunction(this);">46</td>
+                <td class="cell" id="cell47" onclick="myFunction(this);">47</td>
+                <td class="cell" id="cell48" onclick="myFunction(this);">48</td>
+                <td class="cell" id="cell49" onclick="myFunction(this);">49</td>
+                <td class="cell" id="cell50" onclick="myFunction(this);">50</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell51" onclick="myFunction(this);">51</td>
+                <td class="cell" id="cell52" onclick="myFunction(this);">52</td>
+                <td class="cell" id="cell53" onclick="myFunction(this);">53</td>
+                <td class="cell" id="cell54" onclick="myFunction(this);">54</td>
+                <td class="cell" id="cell55" onclick="myFunction(this);">55</td>
+                <td class="cell" id="cell56" onclick="myFunction(this);">56</td>
+                <td class="cell" id="cell57" onclick="myFunction(this);">57</td>
+                <td class="cell" id="cell58" onclick="myFunction(this);">58</td>
+                <td class="cell" id="cell59" onclick="myFunction(this);">59</td>
+                <td class="cell" id="cell60" onclick="myFunction(this);">60</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell61" onclick="myFunction(this);">61</td>
+                <td class="cell" id="cell62" onclick="myFunction(this);">62</td>
+                <td class="cell" id="cell63" onclick="myFunction(this);">63</td>
+                <td class="cell" id="cell64" onclick="myFunction(this);">64</td>
+                <td class="cell" id="cell65" onclick="myFunction(this);">65</td>
+                <td class="cell" id="cell66" onclick="myFunction(this);">66</td>
+                <td class="cell" id="cell67" onclick="myFunction(this);">67</td>
+                <td class="cell" id="cell68" onclick="myFunction(this);">68</td>
+                <td class="cell" id="cell69" onclick="myFunction(this);">69</td>
+                <td class="cell" id="cell70" onclick="myFunction(this);">70</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell71" onclick="myFunction(this);">71</td>
+                <td class="cell" id="cell72" onclick="myFunction(this);">72</td>
+                <td class="cell" id="cell73" onclick="myFunction(this);">73</td>
+                <td class="cell" id="cell74" onclick="myFunction(this);">74</td>
+                <td class="cell" id="cell75" onclick="myFunction(this);">75</td>
+                <td class="cell" id="cell76" onclick="myFunction(this);">76</td>
+                <td class="cell" id="cell77" onclick="myFunction(this);">77</td>
+                <td class="cell" id="cell78" onclick="myFunction(this);">78</td>
+                <td class="cell" id="cell79" onclick="myFunction(this);">79</td>
+                <td class="cell" id="cell80" onclick="myFunction(this);">80</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell81" onclick="myFunction(this);">81</td>
+                <td class="cell" id="cell82" onclick="myFunction(this);">82</td>
+                <td class="cell" id="cell83" onclick="myFunction(this);">83</td>
+                <td class="cell" id="cell84" onclick="myFunction(this);">84</td>
+                <td class="cell" id="cell85" onclick="myFunction(this);">85</td>
+                <td class="cell" id="cell86" onclick="myFunction(this);">86</td>
+                <td class="cell" id="cell87" onclick="myFunction(this);">87</td>
+                <td class="cell" id="cell88" onclick="myFunction(this);">88</td>
+                <td class="cell" id="cell89" onclick="myFunction(this);">89</td>
+                <td class="cell" id="cell90" onclick="myFunction(this);">90</td>
+            </tr>
+            <tr>
+                <td class="cell" id="cell91" onclick="myFunction(this);">91</td>
+                <td class="cell" id="cell92" onclick="myFunction(this);">92</td>
+                <td class="cell" id="cell93" onclick="myFunction(this);">93</td>
+                <td class="cell" id="cell94" onclick="myFunction(this);">94</td>
+                <td class="cell" id="cell95" onclick="myFunction(this);">95</td>
+                <td class="cell" id="cell96" onclick="myFunction(this);">96</td>
+                <td class="cell" id="cell97" onclick="myFunction(this);">97</td>
+                <td class="cell" id="cell98" onclick="myFunction(this);">98</td>
+                <td class="cell" id="cell99" onclick="myFunction(this);">99</td>
+                <td class="cell" id="cell100" onclick="myFunction(this);">100</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>
