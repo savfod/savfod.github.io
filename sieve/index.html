@@ -51,8 +51,8 @@
 
             var tableBody = document.createElement('TBODY');
             table.appendChild(tableBody);
-            var w = 12;
-            var h = 20;
+            var w = 17;
+            var h = 12;
 
 
             for (var i = 0; i < h; i++) {
@@ -60,12 +60,13 @@
                 tableBody.appendChild(tr);
 
                 for (var j = 0; j < w; j++) {
+                    var cell_num = j*h + i + 1
                     var td = document.createElement('td');
-                    td.id = "cell" + (i*w + j + 1)
+                    td.id = "cell" + (cell_num)
                     td.setAttribute("class", "cell")
                     td.setAttribute("onclick", "myFunction(this);") 
                     
-                    td.appendChild(document.createTextNode(i*w + j + 1));
+                    td.appendChild(document.createTextNode(cell_num));
                     tr.appendChild(td);
                 }
             }
