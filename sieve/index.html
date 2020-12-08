@@ -3,18 +3,51 @@
 
 
 <style>
-    .status { 
+    /* #circle {
+      width: 50px;
+      height: 50px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      background: red;
+    }     */
+    .status {
         font: 30px monospace;
         /* text-align: center; */
     }
+
+    .tb {
+        border-collapse: collapse;
+        /* border-color:black; */
+        /* border-width:1px; */
+    }
+
     .cell {
         font: bold 16px monospace;
         text-align: center;
-        border: 1;
+        border: solid 1px;
+        border-style: solid;
+        border-color: black;
+        border-collapse: collapse;
+        padding: 5px;
         height: 50px;
         width: 50px;
-        background: green;
+        background: white;
     }
+
+    .brush {
+        font: bold 16px monospace;
+        text-align: center;
+        border: solid 1px;
+        border-style: solid;
+        border-color: black;
+        border-collapse: collapse;
+        height: 50px;
+        width: 50px;
+    }
+
+
+
 
     /* .background {} */
 </style>
@@ -29,13 +62,29 @@
         function myFunction(x) {
             //thx https://stackoverflow.com/questions/4120444/swap-table-cell-color-on-click
             var d = 0;
-            
-            if (x.style.backgroundColor === 'red') {
-                x.style.backgroundColor = 'green';
+
+            var brushcolor = 'lightgrey';
+            elements = document.getElementsByClassName("brush")
+            for (i = 0; i < elements.length; i++) {
+                var el = elements[i];
+                if (el.getAttribute("selected") == "selected") {
+                    brushcolor = el.style.backgroundColor;
+                }
+            }
+
+            if (x.style.backgroundColor === brushcolor) {
+                x.style.backgroundColor = 'white';
+                x.style.color = 'black';
                 d = 1;
             } else {
-                x.style.backgroundColor = 'red';
-                d = -1;
+                // x.style.backgroundColor = 'lightgrey';
+                if (x.style.backgroundColor == "white") { 
+                    d = -1;
+                }
+                
+                x.style.backgroundColor = brushcolor;
+                x.style.color = '#777777';
+                
             }
 
             var element = document.getElementById("count")
@@ -43,15 +92,29 @@
             element.innerHTML = val + d;
         }
 
+        function myFunction2(x) {
+            elements = document.getElementsByClassName("brush")
+            for (i = 0; i < elements.length; i++) {
+                var el = elements[i];
+                el.style.border = 'solid 1px'
+                el.setAttribute("selected", "no")
+            }
+
+            x.style.border = 'solid 5px'
+            x.setAttribute("selected", "selected")
+        }
+
         function addTable() {
             //thx https://stackoverflow.com/questions/14643617/create-table-using-javascript
             var myTableDiv = document.getElementById("myDynamicTable");
-            
+
             var table = document.createElement('table');
+            table.setAttribute("class", "tb")
+
 
             var tableBody = document.createElement('TBODY');
             table.appendChild(tableBody);
-            var w = 17;
+            var w = 22;
             var h = 12;
 
 
@@ -60,12 +123,13 @@
                 tableBody.appendChild(tr);
 
                 for (var j = 0; j < w; j++) {
-                    var cell_num = j*h + i + 1
+                    var cell_num = j * h + i + 1
                     var td = document.createElement('td');
-                    td.id = "cell" + (cell_num)
-                    td.setAttribute("class", "cell")
-                    td.setAttribute("onclick", "myFunction(this);") 
-                    
+                    td.id = "cell" + (cell_num);
+                    td.setAttribute("class", "cell");
+                    td.setAttribute("style", "background-color: white");
+                    td.setAttribute("onclick", "myFunction(this);");
+
                     td.appendChild(document.createTextNode(cell_num));
                     tr.appendChild(td);
                 }
@@ -73,7 +137,7 @@
             myTableDiv.appendChild(table);
 
             var element = document.getElementById("count");
-            element.innerHTML = w*h;
+            element.innerHTML = w * h;
         }
         // addTable();
 
@@ -83,6 +147,75 @@
     </div>
     <div id="myDynamicTable">
     </div>
+
+    <br><br>
+
+    <div id="used color">
+        <div class="status">
+            Цвет: <text id="count"></text>
+        </div>
+
+        <div id="circle"></div>
+
+        <table class="tb">
+            <tr>
+                <!-- <td selected="selected" class="brush" onclick="myFunction2(this);" style="background-color: lightgrey; color: darkgrey; border: solid 5px">N</td> -->
+                <td selected="selected" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 00%,80%); color: #777777; border: solid 5px">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 50%, 75%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(120, 50%, 75%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(240, 50%, 75%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 100%, 50%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(120, 100%, 50%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(240, 100%, 50%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 00%,50%); color: #777777;">N</td>
+
+                <!-- <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 60%, 60%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(90, 60%, 60%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(180, 60%, 60%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(270, 60%, 60%); color: #777777;">N</td> -->
+                <!-- <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: #505050; color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 80%, 60%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(90, 80%, 60%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(180, 80%, 60%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(270, 80%, 60%); color: #777777;">N</td> -->
+
+<!-- 
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 50%, 75%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(120, 50%, 75%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(240, 50%, 75%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(0, 100%, 50%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(120, 100%, 50%); color: #777777;">N</td>
+                <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color:hsl(240, 100%, 50%); color: #777777;">N</td>
+
+           
+            <td selected="selected" class="brush" onclick="myFunction2(this);" style="background-color: lightgrey; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: lightgreen; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: lightyellow; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: LightCoral; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: green; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: yellow; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: red; color: darkgrey;">N</td> -->
+
+            <!-- <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: #f0fff0; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: #fffff0; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: #fff0f0; color: darkgrey;">N</td> -->
+            
+            <!--<td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: #fffff0; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: #f0fff0; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: #ff0000; color: darkgrey;">N</td>
+
+
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: lightcoral; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: lightcyan; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: lightpink; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: lightseagreen; color: darkgrey;">N</td>
+            <td selected="no" class="brush" onclick="myFunction2(this);" style="background-color: lightskyblue; color: darkgrey;">N</td> -->
+
+        </table>
+    </div>
+
+
+
 
 </body>
 
